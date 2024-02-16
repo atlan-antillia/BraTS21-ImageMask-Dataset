@@ -1,4 +1,4 @@
-<h2>BraTS21-ImageMask-Dataset (2024/02/16)</h2>
+<h2>BraTS21-ImageMask-Dataset (Updated: 2024/02/16)</h2>
 This is a simple dataset RSNA-ASNR-MICCAI Brain Tumor Segmentation (BraTS 2021) 
 for Image Segmentation.<br>  
 
@@ -67,7 +67,7 @@ Each sub-folder of BraTS21 contains five NIfTI files (.nii.gz) as shown below.<b
 └─BraTS2021_00000_t2.nii.gz
 </pre>
 
-For simplicity, we use the following two type of NIfTI files.<br>
+For simplicity, we use the following two types of NIfTI files.<br>
 <pre>
 flair.nii.gz : fluid-attenuated inversion recovery MR images
 seg.nii.gz   : segmentation images 
@@ -124,6 +124,57 @@ python split_master.py
 BraTS21-ImageMask-Dataset Statistics:<br>
 <img src="./_BraTS21-ImageMask-Dataset_.png" width="512" height="auto"><br>
 
+
+<h3>3.3 Validate mask regions </h3>
+Please run the following command to validate mask regions corresponding to images
+in <b>./BraTS21-ImageMask-Dataset/train</b> folder.<br>
+<pre>
+python ImageMaskBlender.py
+</pre> 
+, by which <b>Blended_mini_train_dataset</b> can be created,<br>
+Blended_train_dataset samples:<br>
+<img src="./asset/blended_sample_images.png" width="1024" height="auto"><br>
+<br>
+Enlarged images:<br>
+<table>
+<tr>
+<td><img src="./Mini_train_dataset/images/BraTS2021_00005_1086.jpg" width="360" height="auto"></td>
+<td><img src="./Mini_train_dataset/masks/BraTS2021_00005_1086.jpg" width="360" height="auto"></td>
+<td><img src="./Blended_mini_train_dataset/BraTS2021_00005_1086.jpg" width="360" height="auto"></td>
+</tr>
+
+<tr>
+<td><img src="./Mini_train_dataset/images/BraTS2021_00108_1079.jpg" width="360" height="auto"></td>
+<td><img src="./Mini_train_dataset/masks/BraTS2021_00108_1079.jpg" width="360" height="auto"></td>
+<td><img src="./Blended_mini_train_dataset/BraTS2021_00108_1079.jpg" width="360" height="auto"></td>
+</tr>
+
+<tr>
+<td><img src="./Mini_train_dataset/images/BraTS2021_00351_1075.jpg" width="360" height="auto"></td>
+<td><img src="./Mini_train_dataset/masks/BraTS2021_00351_1075.jpg" width="360" height="auto"></td>
+<td><img src="./Blended_mini_train_dataset/BraTS2021_00351_1075.jpg" width="360" height="auto"></td>
+</tr>
+
+<tr>
+<td><img src="./Mini_train_dataset/images/BraTS2021_00734_1057.jpg" width="360" height="auto"></td>
+<td><img src="./Mini_train_dataset/masks/BraTS2021_00734_1057.jpg" width="360" height="auto"></td>
+<td><img src="./Blended_mini_train_dataset/BraTS2021_00734_1057.jpg" width="360" height="auto"></td>
+</tr>
+
+<tr>
+<td><img src="./Mini_train_dataset/images/BraTS2021_01104_1102.jpg" width="360" height="auto"></td>
+<td><img src="./Mini_train_dataset/masks/BraTS2021_01104_1102.jpg" width="360" height="auto"></td>
+<td><img src="./Blended_mini_train_dataset/BraTS2021_01104_1102.jpg" width="360" height="auto"></td>
+</tr>
+
+<tr>
+<td><img src="./Mini_train_dataset/images/BraTS2021_01532_1097.jpg" width="360" height="auto"></td>
+<td><img src="./Mini_train_dataset/masks/BraTS2021_01532_1097.jpg" width="360" height="auto"></td>
+<td><img src="./Blended_mini_train_dataset/BraTS2021_01532_1097.jpg" width="360" height="auto"></td>
+</tr>
+
+</table>
+<br>
 
 <h3>
 4. Download BraTS21-ImageMask-Dataset.zip
