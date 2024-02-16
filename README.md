@@ -136,6 +136,20 @@ Blended_train_dataset samples:<br>
 <br>
 Enlarged images:<br>
 <table>
+<thead>
+<tr>
+<td>
+images
+</td>
+<td>
+masks
+</td>
+<td>
+blended
+</td>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td><img src="./Mini_train_dataset/images/BraTS2021_00005_1086.jpg" width="360" height="auto"></td>
 <td><img src="./Mini_train_dataset/masks/BraTS2021_00005_1086.jpg" width="360" height="auto"></td>
@@ -172,6 +186,7 @@ Enlarged images:<br>
 <td><img src="./Blended_mini_train_dataset/BraTS2021_01532_1097.jpg" width="360" height="auto"></td>
 </tr>
 
+</tbody>
 </table>
 <br>
 
