@@ -2,7 +2,6 @@
 This is a simple dataset RSNA-ASNR-MICCAI Brain Tumor Segmentation (BraTS 2021) 
 for Image Segmentation.<br>  
 
-
 <h3>1. Dataset Citation</h3>
 
 The dataset used here has been taken from Task1 (Segmentation) dataset of the following website.<br>
