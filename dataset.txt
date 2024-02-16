@@ -1,0 +1,38 @@
+The dataset used here has been taken from the following website.
+
+BRATS21 (RSNA-ASNR-MICCAI Brain Tumor Segmentation (BraTS) Challenge 2021)
+
+https://paperswithcode.com/dataset/brats21
+
+
+The RSNA-ASNR-MICCAI BraTS 2021 challenge utilizes multi-institutional 
+pre-operative baseline multi-parametric magnetic resonance imaging (mpMRI) scans, 
+and focuses on the evaluation of state-of-the-art methods for (Task 1) the 
+segmentation of intrinsically heterogeneous brain glioblastoma sub-regions 
+in mpMRI scans. 
+Furthemore, this BraTS 2021 challenge also focuses on the evaluation of (Task 2) 
+classification methods to predict the MGMT promoter methylation status.
+
+Please see also:
+
+RSNA-ASNR-MICCAI Brain Tumor Segmentation (BraTS) Challenge 2021
+
+http://braintumorsegmentation.org/
+
+Data Usage Agreement / Citations
+You are free to use and/or refer to the BraTS datasets in your own research, 
+provided that you always cite the following three manuscripts: 
+
+[1] U.Baid, et al., "The RSNA-ASNR-MICCAI BraTS 2021 Benchmark on Brain Tumor 
+Segmentation and Radiogenomic Classification", 
+arXiv:2107.02314, 2021(opens in a new window). 
+
+[2] B. H. Menze, A. Jakab, S. Bauer, J. Kalpathy-Cramer, K. Farahani, J. Kirby, et al. 
+"The Multimodal Brain Tumor Image Segmentation Benchmark (BRATS)", 
+IEEE Transactions on Medical Imaging 34(10), 1993-2024 (2015) 
+DOI: 10.1109/TMI.2014.2377694 (opens in a new window) 
+
+[3] S. Bakas, H. Akbari, A. Sotiras, M. Bilello, M. Rozycki, J.S. Kirby, et al., 
+"Advancing The Cancer Genome Atlas glioma MRI collections with expert segmentation 
+labels and radiomic features", Nature Scientific Data, 4:170117 (2017) 
+DOI: 10.1038/sdata.2017.117(opens in a new window)
