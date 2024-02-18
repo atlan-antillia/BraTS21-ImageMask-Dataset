@@ -15,6 +15,15 @@
 
 # ImageMaskDatasetGenerator.py
 # 2023/06/28 to-arai
+# 2024/02/18 Updated generate_image_files method not to use matplotlib
+#  It will speed up a generatation jpg image file from nii.gz file. 
+#
+# If you would like to use matplotlib, please specify use_matplotlib=True in the
+# following way.
+#  generator = ImageMaskDatasetGenerator(input_dir=input_dir, output_dir=output_dir, 
+#           angle=90,  use_matplotlib=True)
+
+# 2024/02/19 Added normalize method.
 
 import os
 
@@ -25,14 +34,16 @@ import numpy as np
 from PIL import Image, ImageOps
 import traceback
 import matplotlib.pyplot as plt
-import SimpleITK as sitk
 import cv2
 
-RESIZE = 256
 
 class ImageMaskDatasetGenerator:
 
-  def __init__(self, input_dir="./BraTS21/", output_dir="./BraTS21-master", angle=90):
+  def __init__(self, input_dir="./BraTS21/", 
+               output_dir="./BraTS21-master", 
+               angle=90, resize=256, 
+               use_matplotlib=False, cmap="gray"):
+    
     self.input_dir = input_dir 
 
     self.output_images_dir = os.path.join(output_dir, "images")
@@ -49,6 +60,10 @@ class ImageMaskDatasetGenerator:
     self.SEG_EXT   = "_seg.nii.gz"
     self.FLAIR_EXT = "_flair.nii.gz"
 
+    self.RESIZE    = (resize, resize)
+    self.use_matplotlib = use_matplotlib
+    self.CMAP      = cmap
+
   def generate(self):
     subdirs = os.listdir(self.input_dir)
     for subdir in subdirs:
@@ -59,13 +74,21 @@ class ImageMaskDatasetGenerator:
       self.generate_mask_files(seg_file    ) 
       self.generate_image_files(flair_file ) 
     
+  
+  def normalize(self, image):
+    min = np.min(image)/255.0
+    max = np.max(image)/255.0
+    scale = (max - min)
+    image = (image - min) / scale
+    image = image.astype('uint8') 
+    return image
+  
   def generate_image_files(self, niigz_file):
     basename = os.path.basename(niigz_file) 
     nameonly = basename.replace(self.FLAIR_EXT, "")
     nii = nib.load(niigz_file)
     fdata  = nii.get_fdata()
     w, h, d = fdata.shape
-
     print("shape {}".format(fdata.shape))
     for i in range(d):
       img = fdata[:,:, i]
@@ -73,15 +96,19 @@ class ImageMaskDatasetGenerator:
       filepath  = os.path.join(self.output_images_dir, filename)
       corresponding_mask_file = os.path.join(self.output_masks_dir, filename)
       if os.path.exists(corresponding_mask_file):
-        plt.xticks([])
-        plt.yticks([])
-        plt.imshow(img, cmap="gray")
-        plt.savefig(filepath, bbox_inches='tight', pad_inches=0)
-        plt.close()
+        if self.use_matplotlib:
+          plt.xticks([])
+          plt.yticks([])
+          plt.imshow(img, cmap=self.CMAP)
+          plt.savefig(filepath, bbox_inches='tight', pad_inches=0)
+          plt.close()
+          img = Image.open(filepath)
+        else:
+          img = self.normalize(img)
+          img = Image.fromarray(img)
 
-        img = Image.open(filepath)
         img = img.convert("RGB")
-        img = img.resize((RESIZE, RESIZE))
+        img = img.resize(self.RESIZE)
         if self.angle>0:
           img = img.rotate(self.angle)
         img.save(filepath)
@@ -105,7 +132,7 @@ class ImageMaskDatasetGenerator:
 
         image = Image.fromarray(img)
         image = image.convert("RGB")
-        image = image.resize((RESIZE, RESIZE))
+        image = image.resize(self.RESIZE)
         if self.angle >0:
           image = image.rotate(self.angle)
         filename  = nameonly + "_" + str(i+ self.BASE_INDEX) + ".jpg"

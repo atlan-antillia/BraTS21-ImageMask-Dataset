@@ -1,7 +1,9 @@
-<h2>BraTS21-ImageMask-Dataset (Updated: 2024/02/16)</h2>
+<h2>BraTS21-ImageMask-Dataset (Updated: 2024/02/19)</h2>
 This is a simple dataset RSNA-ASNR-MICCAI Brain Tumor Segmentation (BraTS 2021) 
 for Image Segmentation.<br>  
 
+<li>2024/02/19: Updated ImageMaskDatasetGenerator.generate_image_files method not to use matplotlib</li>
+<br>
 <h3>1. Dataset Citation</h3>
 
 The dataset used here has been taken from Task1 (Segmentation) dataset of the following website.<br>
